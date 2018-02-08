@@ -57,15 +57,19 @@ var myPlayList = [
 // DOCUMENT READY FUNCTION
 $( document ).ready(function() {
 	// everything inside this function happens as soon as the page loads!
-displaySong(mySong);
+displayList(myPlayList);
+$("button").click(function() {
+	addSong();
+	$(".card").html(" ");
+	displayList(myPlayList);
+}
 
-
+);
 });
 
 // displaySong uses the properties in the songObject to create an HTML element for a single song
 //	  and appends the element to the playlist on the page
 function displaySong(songObject){
-	
 	var songTitle = songObject["title"];
     var songArtist = songObject["artist"];
     var songImage = songObject["imageURL"];
@@ -73,7 +77,7 @@ function displaySong(songObject){
     $("body").append('<div id="song_div"></div>');
     $("#song_div").append("<p>" + songTitle + " by </p>");
     $("#song_div").append("<p>" + songArtist + "</p>");
-    $("#song_div").append("<img src=" + songImage + " width='200px'></a>");
+    $("#song_div").append("<img src=" + songImage + " width='200px' float='right'></a>");
     $("#song_div").append("<p><a href=" + songURL + ">Listen to Track</a></p>");
 
 
@@ -83,7 +87,10 @@ function displaySong(songObject){
 // displayList takes in an array of song objects, and it uses the information from each song object
 //    to create an HTML element and append it to the playlist on the page
 function displayList(songsArray){
-
+for (var i = 0; i < songsArray.length; i++){
+    displaySong(songsArray[i]);
+    // Remember to append HTML for the  imageURL and playURL!
+} 
 
 
 }
@@ -98,7 +105,20 @@ function clearList(){
 // addSong takes inputs from the input boxes, organizes them into a new song object, and
 //    pushes a new song to the playlist array
 function addSong(){
-
-
+	var titleVal = $("#title").val();
+    var artistVal = $("#artist").val();
+    var linkVal = $("#play-link").val();
+    var albumImageVal = $("#album-image").val();
+    
+    var newSong = {
+        "title" : titleVal,
+        "artist" : artistVal,
+        "link" : linkVal,
+        "image" : albumImageVal
+        // Create an object with a title, 
+        // artist, link, and image value
+        // from the inputs in the HTML
+    };
+	myPlayList.push(newSong);
 
 }
