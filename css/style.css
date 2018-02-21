@@ -1,3 +1,19 @@
 .song-image {
 	width: 12rem;
 }
+button {
+  background-color: #5cb85c;
+  border-radius: 25px;
+  opacity: 0.8;
+  color: white;
+  font-size: 15px;
+  padding: 5px;
+  border: 2px solid #5cb85c;
+  margin: 5px;
+  float: right;
+}
+button:hover {
+    opacity: 1;
+    box-shadow: 5px 5px 5px red;
+     transition: box-shadow 0.75s, opacity 1s;
+}

@@ -50,22 +50,25 @@ var myPlayList = [
 		"playURL": "https://open.spotify.com/track/7cGfrVoC7G03XeXn7yflx5",
 	}
 
-]
+];
 
 
 
 // DOCUMENT READY FUNCTION
 $( document ).ready(function() {
 	// everything inside this function happens as soon as the page loads!
-displayList(myPlayList);
-$("button").click(function() {
-	clearList();
-	addSong();
-	$("#song_div").html(" ");
 	displayList(myPlayList);
-}
+	$("#submit").click(function() {
+		clearList();
+		addSong();
+		displayList(myPlayList);
+	});
+		
+		
 
-);
+	$("#clear").click(function() {
+	removeAllSongs(myPlayList);
+	});
 });
 
 // displaySong uses the properties in the songObject to create an HTML element for a single song
@@ -75,12 +78,12 @@ function displaySong(songObject){
     var songArtist = songObject["artist"];
     var songImage = songObject["imageURL"];
     var songURL = songObject["playURL"];
-    $(".songs").append('<div id="song_div" class="card"></div>');
+    $(".songs").append('<div id="song_div" class="card" class="row"></div>');
     $("#song_div").append("<img src=" + songImage + " class='song-image img-thumbnail float-right'></a>");
     $("#song_div").append("<h3>" + songTitle + "</h3>");
     $("#song_div").append("<p>" + songArtist + "</p>");
     $("#song_div").append("<a href=" + songURL + ">Play Now</a>");
-
+    
 
 
 }
@@ -88,8 +91,8 @@ function displaySong(songObject){
 // displayList takes in an array of song objects, and it uses the information from each song object
 //    to create an HTML element and append it to the playlist on the page
 function displayList(songsArray){
-for (var i = 0; i < songsArray.length; i++){
-    displaySong(songsArray[i]);
+	for (var i = 0; i < songsArray.length; i++){
+    	displaySong(songsArray[i]);
     // Remember to append HTML for the  imageURL and playURL!
 } 
 
@@ -98,7 +101,7 @@ for (var i = 0; i < songsArray.length; i++){
 
 // clearList removes all the content from the playlist on the page
 function clearList(){
-$("#song_div").html("");
+	$("#song_div").html("");
 
 
 }
@@ -122,4 +125,9 @@ function addSong(){
     };
 	myPlayList.push(newSong);
 
+}
+function removeAllSongs(songList) {
+		songList.splice(0,[songList.length]);
+		$(".songs").html("");
+	
 }

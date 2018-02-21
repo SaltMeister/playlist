@@ -19,7 +19,6 @@
 
   <body>
     <div class="container"><!-- page container -->
-
       <div class="row"><!-- header section -->
         <div class="col text-center">
           <h1> Playlist </h1>
@@ -46,10 +45,15 @@
             <label for="album-image">Album Image</label>
             <input type="text" class="form-control" id="album-image">
           </div>
-          <button class="btn btn-success btn-block"> Submit </button>
+          <button class="btn btn-success btn-block" id="submit"> Submit </button>
         </div>
       </div><!-- add song section ends here -->
-
+      
+      <div class="row">
+        <div class="col">
+          <button id="clear">Clear Playlist</button>
+        </div>
+      </div>
 
       <div class="row"><!-- song list section -->
         <div class="col">
